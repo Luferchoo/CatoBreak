@@ -31,11 +31,12 @@ UserSchema.pre('save', function(next){
     }
 });
 
-UserSchema.methods.usernameExists = async function(username){
+UserSchema.methods.usernameExists = async function(username){ //valida si un nombre de usuario ya existe
     try {
         let result = await Mongoose.model('User').find({username: username});
 
         return result.length > 0;
+
     } catch (ex) {
         return false;
     }

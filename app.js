@@ -42,10 +42,10 @@ connection.once('open', () =>{
 app.use('/', indexRouter);
 //app.use('/auth', authRouter);
 app.use('/api/users', usersRouter);
-/*app.use('/api/reservations', reservationsRouter);
+//app.use('/api/reservations', reservationsRouter);
 app.use('/api/games', gamesRouter);
 app.use('/api/lunches', lunchesRouter);
-app.use('/api/purchases', purchasesRouter);*/
+//app.use('/api/purchases', purchasesRouter);*/
 //app.use('/api/coins', coinsRouter);
 //app.use('/api/wallets', walletsRouter);
 
