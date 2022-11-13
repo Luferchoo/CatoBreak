@@ -11,13 +11,11 @@ var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth.router');
 var usersRouter = require('./routes/users.router');
 var capitulo_aRouter = require('./routes/capitulo_a.router');
-/*
 var capitulo_bRouter = require('./routes/capitulo_b.router');
 var capitulo_cRouter = require('./routes/capitulo_c.router');
 var capitulo_dRouter = require('./routes/capitulo_d.router');
 var capitulo_eRouter = require('./routes/capitulo_e.router');
 var capitulo_fRouter = require('./routes/capitulo_f.router');
-*/
 var app = express();
 
 // view engine setup
@@ -45,18 +43,13 @@ connection.once('open', () =>{
 app.use('/', indexRouter);
 //app.use('/auth', authRouter);
 app.use('/api/users', usersRouter);
-//app.use('/api/reservations', reservationsRouter);
 app.use('/api/capitulo_a', capitulo_aRouter);
-/*
 app.use('/api/capitulo_b', capitulo_bRouter);
 app.use('/api/capitulo_c', capitulo_cRouter);
 app.use('/api/capitulo_d', capitulo_dRouter);
 app.use('/api/capitulo_e', capitulo_eRouter);
 app.use('/api/capitulo_f', capitulo_fRouter);
-*/
-//app.use('/api/purchases', purchasesRouter);*/
-//app.use('/api/coins', coinsRouter);
-//app.use('/api/wallets', walletsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

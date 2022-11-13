@@ -3,12 +3,12 @@ var router = express.Router();
 const createError = require('http-errors');
 const {jsonResponse}= require('../jsonresponse');
 
-const capitulo_a = require('../model/capitulo_a.model');
-console.log(capitulo_a)
+const capitulo_b = require('../model/capitulo_b.model');
+console.log(capitulo_b)
 router.get('/',async (req, res, next)=>{
     let results={};
     try{
-        results = await capitulo_a.find({});
+        results = await capitulo_b.find({});
         console.log(results)
     } catch(ex){
         next(createError(500,'Error fetching results'))
@@ -17,12 +17,12 @@ router.get('/',async (req, res, next)=>{
 });
 
 router.post('/',async (req, res, next)=>{
-    const {cap_a_preg_1_1, cap_a_preg_1_2, cap_a_preg_2_1, cap_a_preg_2_2, cap_a_preg_3}=req.body;
-    if(!cap_a_preg_1_1 || !cap_a_preg_1_2 || !cap_a_preg_2_1 || !cap_a_preg_2_2 || !cap_a_preg_3 ){
+    const {cap_b_preg_1, cap_b_preg_2, cap_b_preg_3, cap_b_preg_4, cap_b_preg_5, cap_b_preg_6, cap_b_preg_7, cap_b_preg_8, cap_b_preg_9, cap_b_preg_10, cap_b_preg_11, cap_b_preg_12, cap_b_preg_13, cap_b_preg_14, cap_b_preg_15, cap_b_preg_16, cap_b_preg_17, cap_b_preg_18, cap_b_preg_19}=req.body;
+    if(!cap_b_preg_1 || !cap_b_preg_2 || !cap_b_preg_3 || !cap_b_preg_4 || !cap_b_preg_5 || !cap_b_preg_6 || !cap_b_preg_7 || !cap_b_preg_8 || !cap_b_preg_9 || !cap_b_preg_10 || !cap_b_preg_11 || !cap_b_preg_12 || !cap_b_preg_13 || !cap_b_preg_14 || !cap_b_preg_15 || !cap_b_preg_16 || !cap_b_preg_17 || !cap_b_preg_18 || !cap_b_preg_19 ){
         next(createError(400, 'falta completar preguntas'));
-      }else if(cap_a_preg_1_1 && cap_a_preg_1_2 && cap_a_preg_2_1 && cap_a_preg_2_2 && cap_a_preg_3){
+      }else if(cap_b_preg_1 && cap_b_preg_2 && cap_b_preg_3 && cap_b_preg_4 && cap_b_preg_5 && cap_b_preg_6 && cap_b_preg_7 && cap_b_preg_8 && cap_b_preg_9 && cap_b_preg_10 && cap_b_preg_11 && cap_b_preg_12 && cap_b_preg_13 && cap_b_preg_14 && cap_b_preg_15 && cap_b_preg_16 && cap_b_preg_17 && cap_b_preg_18 && cap_b_preg_19 ){
         try{
-            const cap_a = new capitulo_a({cap_a_preg_1_1, cap_a_preg_1_2, cap_a_preg_2_1, cap_a_preg_2_2, cap_a_preg_3});
+            const cap_a = new capitulo_b({cap_b_preg_1, cap_b_preg_2, cap_b_preg_3, cap_b_preg_4, cap_b_preg_5, cap_b_preg_6, cap_b_preg_7, cap_b_preg_8, cap_b_preg_9, cap_b_preg_10, cap_b_preg_11, cap_b_preg_12, cap_b_preg_13, cap_b_preg_14, cap_b_preg_15, cap_b_preg_16, cap_b_preg_17, cap_b_preg_18, cap_b_preg_19});
             await cap_a.save();
         }catch(ex){
             next(createError(500, 'Error trying to register the form. Try again.'))

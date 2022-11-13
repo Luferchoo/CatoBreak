@@ -3,12 +3,12 @@ var router = express.Router();
 const createError = require('http-errors');
 const {jsonResponse}= require('../jsonresponse');
 
-const capitulo_a = require('../model/capitulo_a.model');
-console.log(capitulo_a)
+const capitulo_c = require('../model/capitulo_c.model');
+console.log(capitulo_c)
 router.get('/',async (req, res, next)=>{
     let results={};
     try{
-        results = await capitulo_a.find({});
+        results = await capitulo_c.find({});
         console.log(results)
     } catch(ex){
         next(createError(500,'Error fetching results'))
@@ -17,13 +17,13 @@ router.get('/',async (req, res, next)=>{
 });
 
 router.post('/',async (req, res, next)=>{
-    const {cap_a_preg_1_1, cap_a_preg_1_2, cap_a_preg_2_1, cap_a_preg_2_2, cap_a_preg_3}=req.body;
-    if(!cap_a_preg_1_1 || !cap_a_preg_1_2 || !cap_a_preg_2_1 || !cap_a_preg_2_2 || !cap_a_preg_3 ){
+    const {cap_c_preg_20}=req.body;
+    if(!cap_c_preg_20){
         next(createError(400, 'falta completar preguntas'));
-      }else if(cap_a_preg_1_1 && cap_a_preg_1_2 && cap_a_preg_2_1 && cap_a_preg_2_2 && cap_a_preg_3){
+      }else if(cap_c_preg_20){
         try{
-            const cap_a = new capitulo_a({cap_a_preg_1_1, cap_a_preg_1_2, cap_a_preg_2_1, cap_a_preg_2_2, cap_a_preg_3});
-            await cap_a.save();
+            const cap_c = new capitulo_c({cap_c_preg_20});
+            await cap_c.save();
         }catch(ex){
             next(createError(500, 'Error trying to register the form. Try again.'))
         }
