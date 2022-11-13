@@ -3,37 +3,35 @@ var router = express.Router();
 const createError = require('http-errors');
 const {jsonResponse}= require('../jsonresponse');
 
-const Game = require('../model/games.model');
+const Capitulo_a = require('../model/capitulo_a.model');
 
 router.get('/',async (req, res, next)=>{
     let results={};
     try{
-        results = await Game.find({}, 'gamename price');
+        results = await Capitulo_a.find({}, 'cap_a_preg_1_1 cap_a_preg_1_2 cap_a_preg_2_1 cap_a_preg_2_2 cap_a_preg_3');
     } catch(ex){
         next(createError(500,'Error fetching results'))
     }
-    res.json(200,{
-        results
-    })
+    res.json(results)
 });
 
 router.post('/',async (req, res, next)=>{
-    const {gamename, price}=req.body;
-    if(!gamename || !price){
-        next(createError(400, 'Gamename and/or price missing'));
-      }else if(gamename && price){
+    const {cap_a_preg_1_1, cap_a_preg_1_2, cap_a_preg_2_1, cap_a_preg_2_2, cap_a_preg_3}=req.body;
+    if(!cap_a_preg_1_1 || !cap_a_preg_1_2 || !cap_a_preg_2_1 || !cap_a_preg_2_2 || !cap_a_preg_3 ){
+        next(createError(400, 'falta completar preguntas'));
+      }else if(cap_a_preg_1_1 && cap_a_preg_1_2 && cap_a_preg_2_1 && cap_a_preg_2_2 && cap_a_preg_3){
         try{
-            const game= new Game({gamename, price});
-            await game.save();
+            const cap_a = new capitulo_a({cap_a_preg_1_1, cap_a_preg_1_2, cap_a_preg_2_1, cap_a_preg_2_2, cap_a_preg_3});
+            await cap_a.save();
         }catch(ex){
-            next(createError(500, 'Error trying to register the game. Try again.'))
+            next(createError(500, 'Error trying to register the form. Try again.'))
         }
         res.json(jsonResponse(200,{
-            message: 'The product has been added successfully'
+            message: 'The form has been added successfully'
         }));
       }
 });
-
+/*
 router.get('/:idgame', async (req, res, next)=>{
     let results={};
 
@@ -41,7 +39,7 @@ router.get('/:idgame', async (req, res, next)=>{
 
     if(!idgame) next(createError(400, 'No ID provided'));
     try{
-        results=await Game.findById(idgame, 'gamename, price');
+        results=await capitulo_a.findById(idgame, 'gamename, price');
     }catch(ex){
         next(createError(500, 'Error trying to fetch the product or ID is incorrect'))
     }
@@ -63,7 +61,7 @@ router.patch('/:idgame', async(req, res, next)=>{
     if(price) update['price']=price;
 
     try{
-        await Game.findByIdAndUpdate(idgame, update);
+        await capitulo_a.findByIdAndUpdate(idgame, update);
     }catch(error){
         next(createError(500, 'Error trying to fecth de game or Id is incorrect'));
     }
@@ -76,13 +74,13 @@ router.delete('/:idgame', async(req, res, next)=>{
     const {idgame}=req.params;
 
     try{
-        await Game.findByIdAndDelete(idgame);
+        await capitulo_a.findByIdAndDelete(idgame);
     }catch(ex){
         next(createError(500, 'Error trying to delete de game or Id is incorrect'));
     }
     res.json(jsonResponse(200,{
         message: 'The game ${idgame} has been deleted'
     }));
-});
+});*/
 
 module.exports = router;
