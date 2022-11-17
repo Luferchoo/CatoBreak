@@ -18,11 +18,12 @@ router.get('/',async (req, res, next)=>{
 
 router.post('/',async (req, res, next)=>{
     const {cap_b_preg_1, cap_b_preg_2, cap_b_preg_3, cap_b_preg_4, cap_b_preg_5, cap_b_preg_6, cap_b_preg_7, cap_b_preg_8, cap_b_preg_9, cap_b_preg_10, cap_b_preg_11, cap_b_preg_12, cap_b_preg_13, cap_b_preg_14, cap_b_preg_15, cap_b_preg_16, cap_b_preg_17, cap_b_preg_18, cap_b_preg_19}=req.body;
-    if(!cap_b_preg_1 || !cap_b_preg_2 || !cap_b_preg_3 || !cap_b_preg_4 || !cap_b_preg_5 || !cap_b_preg_6 || !cap_b_preg_7 || !cap_b_preg_8 || !cap_b_preg_9 || !cap_b_preg_10 || !cap_b_preg_11 || !cap_b_preg_12 || !cap_b_preg_13 || !cap_b_preg_14 || !cap_b_preg_15 || !cap_b_preg_16 || !cap_b_preg_17 || !cap_b_preg_18 || !cap_b_preg_19 ){
-        next(createError(400, 'falta completar preguntas'));
-      }else if(cap_b_preg_1 && cap_b_preg_2 && cap_b_preg_3 && cap_b_preg_4 && cap_b_preg_5 && cap_b_preg_6 && cap_b_preg_7 && cap_b_preg_8 && cap_b_preg_9 && cap_b_preg_10 && cap_b_preg_11 && cap_b_preg_12 && cap_b_preg_13 && cap_b_preg_14 && cap_b_preg_15 && cap_b_preg_16 && cap_b_preg_17 && cap_b_preg_18 && cap_b_preg_19 ){
+    //if(!cap_b_preg_1 || !cap_b_preg_2 || !cap_b_preg_3 || !cap_b_preg_4 || !cap_b_preg_5 || !cap_b_preg_6 || !cap_b_preg_7 || !cap_b_preg_8 || !cap_b_preg_9 || !cap_b_preg_10 || !cap_b_preg_11 || !cap_b_preg_12 || !cap_b_preg_13 || !cap_b_preg_14 || !cap_b_preg_15 || !cap_b_preg_16 || !cap_b_preg_17 || !cap_b_preg_18 || !cap_b_preg_19 ){
+      //  next(createError(400, 'falta completar preguntas'));
+     // }else if(cap_b_preg_1 && cap_b_preg_2 && cap_b_preg_3 && cap_b_preg_4 && cap_b_preg_5 && cap_b_preg_6 && cap_b_preg_7 && cap_b_preg_8 && cap_b_preg_9 && cap_b_preg_10 && cap_b_preg_11 && cap_b_preg_12 && cap_b_preg_13 && cap_b_preg_14 && cap_b_preg_15 && cap_b_preg_16 && cap_b_preg_17 && cap_b_preg_18 && cap_b_preg_19 ){
         try{
-            const cap_a = new capitulo_b({cap_b_preg_1, cap_b_preg_2, cap_b_preg_3, cap_b_preg_4, cap_b_preg_5, cap_b_preg_6, cap_b_preg_7, cap_b_preg_8, cap_b_preg_9, cap_b_preg_10, cap_b_preg_11, cap_b_preg_12, cap_b_preg_13, cap_b_preg_14, cap_b_preg_15, cap_b_preg_16, cap_b_preg_17, cap_b_preg_18, cap_b_preg_19});
+            //const cap_a = new capitulo_b({cap_b_preg_1, cap_b_preg_2, cap_b_preg_3, cap_b_preg_4, cap_b_preg_5, cap_b_preg_6, cap_b_preg_7, cap_b_preg_8, cap_b_preg_9, cap_b_preg_10, cap_b_preg_11, cap_b_preg_12, cap_b_preg_13, cap_b_preg_14, cap_b_preg_15, cap_b_preg_16, cap_b_preg_17, cap_b_preg_18, cap_b_preg_19});
+            const cap_a = new capitulo_b({cap_b_preg_1});
             await cap_a.save();
         }catch(ex){
             next(createError(500, 'Error trying to register the form. Try again.'))
@@ -30,7 +31,7 @@ router.post('/',async (req, res, next)=>{
         res.json(jsonResponse(200,{
             message: 'The form has been added successfully'
         }));
-      }
+      //}
 });
 /*
 router.get('/:idgame', async (req, res, next)=>{
