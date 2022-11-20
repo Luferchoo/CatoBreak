@@ -18,9 +18,9 @@ router.get('/',async (req, res, next)=>{
 
 router.post('/',async (req, res, next)=>{
     const {cap_f_preg_23}=req.body;
-    if(!cap_f_preg_23){
-        next(createError(400, 'falta completar preguntas'));
-      }else if(cap_f_preg_23){
+    //if(!cap_f_preg_23){
+        //next(createError(400, 'falta completar preguntas'));
+      //}else if(cap_f_preg_23){
         try{
             const cap_f = new capitulo_f({cap_f_preg_23});
             await cap_f.save();
@@ -30,7 +30,7 @@ router.post('/',async (req, res, next)=>{
         res.json(jsonResponse(200,{
             message: 'The form has been added successfully'
         }));
-      }
+      //}
 });
 /*
 router.get('/:idgame', async (req, res, next)=>{

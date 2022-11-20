@@ -18,9 +18,9 @@ router.get('/',async (req, res, next)=>{
 
 router.post('/',async (req, res, next)=>{
     const {cap_a_preg_1_1, cap_a_preg_1_2, cap_a_preg_2_1, cap_a_preg_2_2, cap_a_preg_3}=req.body;
-    if(!cap_a_preg_1_1 || !cap_a_preg_1_2 || !cap_a_preg_2_1 || !cap_a_preg_2_2 || !cap_a_preg_3 ){
-        next(createError(400, 'falta completar preguntas'));
-      }else if(cap_a_preg_1_1 && cap_a_preg_1_2 && cap_a_preg_2_1 && cap_a_preg_2_2 && cap_a_preg_3){
+    //if(!cap_a_preg_1_1 || !cap_a_preg_1_2 || !cap_a_preg_2_1 || !cap_a_preg_2_2 || !cap_a_preg_3 ){
+        //next(createError(400, 'falta completar preguntas'));
+      //}else if(cap_a_preg_1_1 && cap_a_preg_1_2 && cap_a_preg_2_1 && cap_a_preg_2_2 && cap_a_preg_3){
         try{
             const cap_a = new capitulo_a({cap_a_preg_1_1, cap_a_preg_1_2, cap_a_preg_2_1, cap_a_preg_2_2, cap_a_preg_3});
             await cap_a.save();
@@ -30,7 +30,7 @@ router.post('/',async (req, res, next)=>{
         res.json(jsonResponse(200,{
             message: 'The form has been added successfully'
         }));
-      }
+     // }
 });
 /*
 router.get('/:idgame', async (req, res, next)=>{
