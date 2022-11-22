@@ -40,4 +40,50 @@ router.post('/', async function(req,res, next){
   }
 });
 
+router.patch('/update',async(req,res)=>{
+  await User.findOneAndUpdate(
+      { _id : mongoose.Types.ObjectId(req.body.id)},
+      { $set:{
+          username:req.body.username,
+          name:req.body.name
+      }}
+  ,{
+      new:true
+  }).exec((err,result)=>{
+      if(err){
+          return res.status(422).json({error:err})
+      }else{
+          res.status(200).json(result)
+      }
+  })
+})
+
+router.delete('/delete/:id',async(req,res)=>{
+  await User.deleteOne({_id:req.params.id})
+  .then(user=>{
+      res.json(user)
+  })
+  .catch(err=>{
+      console.log(err)
+  })
+})
+
+// update Password
+router.patch('/updatepassword',async(req,res)=>{
+  await User.findOneAndUpdate(
+      { _id : mongoose.Types.ObjectId(req.body.id)},
+      { $set:{
+          password:req.body.password
+      }}
+  ,{
+      new:true
+  }).exec((err,result)=>{
+      if(err){
+          return res.status(422).json({error:err})
+      }else{
+          res.status(200).json(result)
+      }
+  })
+})
+
 module.exports = router;

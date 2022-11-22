@@ -17,7 +17,7 @@ router.get('/',async (req, res, next)=>{
 });
 
 router.post('/',async (req, res, next)=>{
-    const {cap_f_preg_23}=req.body;
+    const {cap_f_preg_23, cap_f_preg_24, cap_f_preg_25, cap_f_preg_26, cap_f_preg_27, cap_f_preg_28, cap_f_preg_29, cap_f_preg_30, cap_f_preg_31, cap_f_preg_32, cap_f_preg_33, cap_f_preg_34, cap_f_preg_35, cap_f_preg_36, cap_f_preg_37, cap_f_preg_38, cap_f_preg_39, cap_f_preg_40, cap_f_preg_41, cap_f_preg_42, cap_f_preg_43, cap_f_preg_44, cap_f_preg_45, cap_f_preg_46, cap_f_preg_47, cap_f_preg_48, cap_f_preg_49}=req.body;
     //if(!cap_f_preg_23){
         //next(createError(400, 'falta completar preguntas'));
       //}else if(cap_f_preg_23){

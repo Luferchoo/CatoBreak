@@ -23,8 +23,8 @@ router.post('/',async (req, res, next)=>{
      // }else if(cap_b_preg_1 && cap_b_preg_2 && cap_b_preg_3 && cap_b_preg_4 && cap_b_preg_5 && cap_b_preg_6 && cap_b_preg_7 && cap_b_preg_8 && cap_b_preg_9 && cap_b_preg_10 && cap_b_preg_11 && cap_b_preg_12 && cap_b_preg_13 && cap_b_preg_14 && cap_b_preg_15 && cap_b_preg_16 && cap_b_preg_17 && cap_b_preg_18 && cap_b_preg_19 ){
         try{
             //const cap_a = new capitulo_b({cap_b_preg_1, cap_b_preg_2, cap_b_preg_3, cap_b_preg_4, cap_b_preg_5, cap_b_preg_6, cap_b_preg_7, cap_b_preg_8, cap_b_preg_9, cap_b_preg_10, cap_b_preg_11, cap_b_preg_12, cap_b_preg_13, cap_b_preg_14, cap_b_preg_15, cap_b_preg_16, cap_b_preg_17, cap_b_preg_18, cap_b_preg_19});
-            const cap_a = new capitulo_b({cap_b_preg_1});
-            await cap_a.save();
+            const cap_b = new capitulo_b({cap_b_preg_1});
+            await cap_b.save();
         }catch(ex){
             next(createError(500, 'Error trying to register the form. Try again.'))
         }
