@@ -14,6 +14,18 @@ router.get('/',async (req, res, next)=>{
         res.status(500).json({message: err.message })
     }
 });
+/*
+//get one
+router.get('/one/:id',async(req,res)=>{
+    try{
+        await capitulo_b.findById(req.params.id)
+        .then(tests=>{
+            res.status(200).json(tests)
+        })
+    } catch(err){
+        res.status(500).json({message: err.message })
+    }
+})*/
 
 router.post('/',async (req, res)=>{
     const cap_b = new capitulo_b({
@@ -47,5 +59,15 @@ router.post('/',async (req, res)=>{
             message: 'The form has been added successfully'
         }));
 });
+
+router.delete('/delete/:id',async(req,res)=>{
+    await capitulo_b.deleteOne({_id:req.params.id})
+    .then(capitulo_b=>{
+        res.json(capitulo_b)
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
 
 module.exports = router;
