@@ -8,8 +8,8 @@ console.log(capitulo_b)
 
 router.get('/',async (req, res, next)=>{
     try{
-        const capitulo_b = await capitulo_b.find()
-        res.status(200).json(capitulo_b)
+        const cap_b = await capitulo_b.find()
+        res.status(200).json(cap_b)
     } catch(err){
         res.status(500).json({message: err.message })
     }
@@ -59,7 +59,7 @@ router.post('/',async (req, res)=>{
             message: 'The form has been added successfully'
         }));
 });
-
+/*
 router.delete('/delete/:id',async(req,res)=>{
     await capitulo_b.deleteOne({_id:req.params.id})
     .then(capitulo_b=>{
@@ -69,5 +69,5 @@ router.delete('/delete/:id',async(req,res)=>{
         console.log(err)
     })
 })
-
+*/
 module.exports = router;
