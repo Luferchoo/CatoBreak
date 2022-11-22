@@ -9,7 +9,7 @@ console.log(capitulo_b)
 router.get('/',async (req, res, next)=>{
     try{
         const capitulo_b = await capitulo_b.find()
-        res.status(200).json(tests)
+        res.status(200).json(capitulo_b)
     } catch(err){
         res.status(500).json({message: err.message })
     }
