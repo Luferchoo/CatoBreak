@@ -59,7 +59,7 @@ router.post('/',async (req, res)=>{
             message: 'The form has been added successfully'
         }));
 });
-/*
+
 router.delete('/delete/:id',async(req,res)=>{
     await capitulo_b.deleteOne({_id:req.params.id})
     .then(capitulo_b=>{
@@ -69,5 +69,5 @@ router.delete('/delete/:id',async(req,res)=>{
         console.log(err)
     })
 })
-*/
+
 module.exports = router;
