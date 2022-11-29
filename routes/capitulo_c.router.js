@@ -5,83 +5,44 @@ const {jsonResponse}= require('../jsonresponse');
 
 const capitulo_c = require('../model/capitulo_c.model');
 console.log(capitulo_c)
+
 router.get('/',async (req, res, next)=>{
-    let results={};
     try{
-        results = await capitulo_c.find({});
-        console.log(results)
-    } catch(ex){
-        next(createError(500,'Error fetching results'))
+        const cap_c = await capitulo_c.find()
+        res.status(200).json(cap_c)
+    } catch(err){
+        res.status(500).json({message: err.message })
     }
-    res.json(results)
 });
 
-router.post('/',async (req, res, next)=>{
-    const {cap_c_preg_20}=req.body;
-    //if(!cap_c_preg_20){
-        //next(createError(400, 'falta completar preguntas'));
-      //}else if(cap_c_preg_20){
+router.post('/',async (req, res)=>{
+    const cap_c = new capitulo_c({
+        cap_c_preg_1:req.body.cap_c_preg_1,
+        cap_c_preg_2:req.body.cap_c_preg_2,
+        cap_c_preg_3:req.body.cap_c_preg_3,
+        cap_c_preg_4:req.body.cap_c_preg_4,
+        cap_c_preg_5:req.body.cap_c_preg_5,
+        cap_c_preg_6:req.body.cap_c_preg_6
+    });
         try{
-            const cap_c = new capitulo_c({cap_c_preg_20});
-            await cap_c.save();
+            const new_C = await cap_c.save()
+        res.status(201).json(new_C) 
         }catch(ex){
             next(createError(500, 'Error trying to register the form. Try again.'))
         }
         res.json(jsonResponse(200,{
             message: 'The form has been added successfully'
         }));
-      //}
-});
-/*
-router.get('/:idgame', async (req, res, next)=>{
-    let results={};
-
-    const {idgame} =req.params;
-
-    if(!idgame) next(createError(400, 'No ID provided'));
-    try{
-        results=await capitulo_a.findById(idgame, 'gamename, price');
-    }catch(ex){
-        next(createError(500, 'Error trying to fetch the product or ID is incorrect'))
-    }
-
-    res.json(jsonResponse(200, {
-        idgame
-    }));
 });
 
-router.patch('/:idgame', async(req, res, next)=>{
-    let update={};
-
-    const{idgame}=req.params;
-    const{gamename, price}=req.body;
-
-    if(!idgame) next(createError(400, 'No ID provided'));
-    if(!gamename && !price) next(createError(400, 'No information available...'));
-    if(gamename) update['gamename']=gamename;
-    if(price) update['price']=price;
-
-    try{
-        await capitulo_a.findByIdAndUpdate(idgame, update);
-    }catch(error){
-        next(createError(500, 'Error trying to fecth de game or Id is incorrect'));
-    }
-    res.json(jsonResponse(200,{
-        message: 'The game ${idgame} has been updated'
-    }));
-});
-
-router.delete('/:idgame', async(req, res, next)=>{
-    const {idgame}=req.params;
-
-    try{
-        await capitulo_a.findByIdAndDelete(idgame);
-    }catch(ex){
-        next(createError(500, 'Error trying to delete de game or Id is incorrect'));
-    }
-    res.json(jsonResponse(200,{
-        message: 'The game ${idgame} has been deleted'
-    }));
-});*/
+router.delete('/delete/:id',async(req,res)=>{
+    await capitulo_c.deleteOne({_id:req.params.id})
+    .then(capitulo_c=>{
+        res.json(capitulo_c)
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
 
 module.exports = router;
