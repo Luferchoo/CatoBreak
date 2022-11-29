@@ -14,6 +14,17 @@ router.get('/',async (req, res, next)=>{
         res.status(500).json({message: err.message })
     }
 });
+//get one
+router.get('/one/:id',async(req,res)=>{
+    try{
+        await capitulo_f.findById(req.params.id)
+        .then(tests=>{
+            res.status(200).json(tests)
+        })
+    } catch(err){
+        res.status(500).json({message: err.message })
+    }
+});
 
 router.post('/',async (req, res)=>{
     const cap_f = new capitulo_f({
