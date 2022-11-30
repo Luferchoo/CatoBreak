@@ -26,7 +26,7 @@ router.get('/one/:id',async(req,res)=>{
         res.status(500).json({message: err.message })
     }
 });
-
+/*
 router.post('/',async (req, res)=>{
     const cap_b = new capitulo_b({
         cap_b_preg_1:req.body.cap_b_preg_1,
@@ -59,6 +59,39 @@ router.post('/',async (req, res)=>{
             message: 'The form has been added successfully'
         }));
 });
+*/
+router.post('/add',(req,res)=>{
+    
+    const new_B = new capitulo_b({
+        cap_b_preg_1:req.body.cap_b_preg_1,
+        cap_b_preg_2:req.body.cap_b_preg_2,
+        cap_b_preg_3:req.body.cap_b_preg_3,
+        cap_b_preg_4:req.body.cap_b_preg_4,
+        cap_b_preg_5:req.body.cap_b_preg_5,
+        cap_b_preg_6:req.body.cap_b_preg_6,
+        cap_b_preg_7:req.body.cap_b_preg_7,
+        cap_b_preg_8:req.body.cap_b_preg_8,
+        cap_b_preg_9:req.body.cap_b_preg_9,
+        cap_b_preg_10:req.body.cap_b_preg_10,
+        cap_b_preg_11:req.body.cap_b_preg_11,
+        cap_b_preg_12:req.body.cap_b_preg_12,
+        cap_b_preg_13:req.body.cap_b_preg_13,
+        cap_b_preg_14:req.body.cap_b_preg_14,
+        cap_b_preg_15:req.body.cap_b_preg_15,
+        cap_b_preg_16:req.body.cap_b_preg_16,
+        cap_b_preg_17:req.body.cap_b_preg_17,
+        cap_b_preg_18:req.body.cap_b_preg_18,
+        cap_b_preg_19:req.body.cap_b_preg_19,
+        id:req.body.id
+    });
+    new_B.save()
+    .then(result => {
+        res.json({result})
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
 
 router.delete('/delete/:id',async(req,res)=>{
     await capitulo_b.deleteOne({_id:req.params.id})

@@ -25,7 +25,7 @@ router.get('/one/:id',async(req,res)=>{
         res.status(500).json({message: err.message })
     }
 });
-
+/*
 router.post('/',async (req, res)=>{
     const cap_e = new capitulo_e({
         cap_e_preg_1:req.body.cap_e_preg_1,
@@ -44,6 +44,25 @@ router.post('/',async (req, res)=>{
             message: 'The form has been added successfully'
         }));
 });
+*/
+router.post('/add',(req,res)=>{
+    
+    const new_E = new capitulo_e({
+        cap_e_preg_1:req.body.cap_e_preg_1,
+        cap_e_preg_2:req.body.cap_e_preg_2,
+        cap_e_preg_3:req.body.cap_e_preg_3,
+        cap_e_preg_4:req.body.cap_e_preg_4,
+        cap_e_preg_5:req.body.cap_e_preg_5,
+        id:req.body.id
+    });
+    new_E.save()
+    .then(result => {
+        res.json({result})
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
 
 router.delete('/delete/:id',async(req,res)=>{
     await capitulo_e.deleteOne({_id:req.params.id})

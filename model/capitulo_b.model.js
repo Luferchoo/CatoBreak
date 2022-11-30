@@ -1,4 +1,5 @@
 const Mongoose = require('mongoose');
+const {ObjectId} = Mongoose.Schema.Types
 
 const capitulo_bSchema = new Mongoose.Schema({
     cap_b_preg_1:{type: String, required:true},
@@ -17,9 +18,13 @@ const capitulo_bSchema = new Mongoose.Schema({
     cap_b_preg_14:{type: String, required:true},
     cap_b_preg_15:{type: String, required:true},
     cap_b_preg_16:{type: String, required:true},
-    cap_b_preg_17:{type: String, required:true},
-    cap_b_preg_18:{type: String, required:true},
-    cap_b_preg_19:{type: String, required:true}
+    cap_b_preg_17:[{type: String, required:true}],
+    cap_b_preg_18:[{type: String, required:true}],
+    cap_b_preg_19:{type: String, required:true},
+    id:{
+        type: ObjectId,
+        ref: "capitulo_a"
+    },
 });
-
+ 
 module.exports = Mongoose.model('capitulo_b',capitulo_bSchema);

@@ -25,7 +25,7 @@ router.get('/one/:id',async(req,res)=>{
         res.status(500).json({message: err.message })
     }
 });
-
+/*
 router.post('/',async (req, res)=>{
     const cap_f = new capitulo_f({
         cap_f_preg_1:req.body.cap_f_preg_1,
@@ -57,6 +57,38 @@ router.post('/',async (req, res)=>{
             message: 'The form has been added successfully'
         }));
 });
+*/
+router.post('/add',(req,res)=>{
+    
+    const new_F = new capitulo_f({
+        cap_f_preg_1:req.body.cap_f_preg_1,
+        cap_f_preg_2:req.body.cap_f_preg_2,
+        cap_f_preg_3:req.body.cap_f_preg_3,
+        cap_f_preg_4:req.body.cap_f_preg_4,
+        cap_f_preg_5:req.body.cap_f_preg_5,
+        cap_f_preg_6:req.body.cap_f_preg_6,
+        cap_f_preg_7:req.body.cap_f_preg_7,
+        cap_f_preg_8:req.body.cap_f_preg_8,
+        cap_f_preg_9:req.body.cap_f_preg_9,
+        cap_f_preg_10:req.body.cap_f_preg_10,
+        cap_f_preg_11:req.body.cap_f_preg_11,
+        cap_f_preg_12:req.body.cap_f_preg_12,
+        cap_f_preg_13:req.body.cap_f_preg_13,
+        cap_f_preg_14:req.body.cap_f_preg_14,
+        cap_f_preg_15:req.body.cap_f_preg_15,
+        cap_f_preg_16:req.body.cap_f_preg_16,
+        cap_f_preg_17:req.body.cap_f_preg_17,
+        cap_f_preg_18:req.body.cap_f_preg_18,
+        id:req.body.id
+    });
+    new_F.save()
+    .then(result => {
+        res.json({result})
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
 
 router.delete('/delete/:id',async(req,res)=>{
     await capitulo_f.deleteOne({_id:req.params.id})

@@ -4,6 +4,7 @@ const createError = require('http-errors');
 const {jsonResponse}= require('../jsonresponse');
 
 const capitulo_a = require('../model/capitulo_a.model');
+
 console.log(capitulo_a)
 
 router.get('/',async (req, res, next)=>{
@@ -14,6 +15,7 @@ router.get('/',async (req, res, next)=>{
         res.status(500).json({message: err.message })
     }
 });
+
 //get one
 router.get('/one/:id',async(req,res)=>{
     try{
@@ -25,6 +27,7 @@ router.get('/one/:id',async(req,res)=>{
         res.status(500).json({message: err.message })
     }
 });
+/*
 router.post('/',async (req, res)=>{
     const cap_a = new capitulo_a({
         cap_a_preg_1_1:req.body.cap_a_preg_1_1,
@@ -58,6 +61,40 @@ router.post('/',async (req, res)=>{
             message: 'The form has been added successfully'
         }));
 });
+*/
+router.post('/add',(req,res)=>{
+    
+            const new_A = new capitulo_a({
+                cap_a_preg_1_1:req.body.cap_a_preg_1_1,
+                cap_a_preg_1_2:req.body.cap_a_preg_1_2,
+                cap_a_preg_1_3:req.body.cap_a_preg_1_3,
+                cap_a_preg_1_4:req.body.cap_a_preg_1_4,
+                cap_a_preg_1_5:req.body.cap_a_preg_1_5,
+                cap_a_preg_1_6:req.body.cap_a_preg_1_6,
+                cap_a_preg_1_7:req.body.cap_a_preg_1_7,
+                cap_a_preg_2_1:req.body.cap_a_preg_2_1,
+                cap_a_preg_2_2:req.body.cap_a_preg_2_2,
+                cap_a_preg_2_3:req.body.cap_a_preg_2_3,
+                cap_a_preg_2_4:req.body.cap_a_preg_2_4,
+                cap_a_preg_2_5:req.body.cap_a_preg_2_5,
+                cap_a_preg_2_6:req.body.cap_a_preg_2_6,
+                cap_a_preg_2_7:req.body.cap_a_preg_2_7,
+                cap_a_preg_2_8:req.body.cap_a_preg_2_8,
+                cap_a_preg_3_1:req.body.cap_a_preg_3_1,
+                cap_a_preg_3_2:req.body.cap_a_preg_3_2,
+                cap_a_preg_4_1:req.body.cap_a_preg_4_1,
+                cap_a_preg_4_2:req.body.cap_a_preg_4_2,
+                cap_a_preg_4_3:req.body.cap_a_preg_4_3
+            });
+            new_A.save()
+            .then(result => {
+                res.json({result})
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+})
+
 
 router.delete('/delete/:id',async(req,res)=>{
     await capitulo_a.deleteOne({_id:req.params.id})
