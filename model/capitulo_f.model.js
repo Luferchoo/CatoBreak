@@ -1,4 +1,5 @@
 const Mongoose = require('mongoose');
+const {ObjectId} = Mongoose.Schema.Types
 
 const capitulo_fSchema = new Mongoose.Schema({
     cap_f_preg_1:[{type: String}],

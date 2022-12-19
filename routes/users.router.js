@@ -10,7 +10,7 @@ router.get('/', async function(req, res, next) {
   let results = {};
 
   try {
-    results = await User.find({}, 'username password');
+    results = await User.find({}, 'username password type');
   } catch (ex) {
     
   }
@@ -20,12 +20,12 @@ router.get('/', async function(req, res, next) {
 
 router.post('/', async function(req,res, next){
   //console.log("XD")
-  const {username, password}= req.body;
+  const {username, password, type}= req.body;
 
-  if(!username || !password){
-    next(createError(400, 'Username and/or password missing'));
-  }else if(username && password){
-    const user= new User({username, password});
+  if(!username || !password || !type){
+    next(createError(400, 'Username, password and/or type missing'));
+  }else if(username && password && type ){
+    const user= new User({username, password, type});
 
     const exists = await user.usernameExists(username);
 
@@ -45,7 +45,7 @@ router.patch('/update',async(req,res)=>{
       { _id : mongoose.Types.ObjectId(req.body.id)},
       { $set:{
           username:req.body.username,
-          name:req.body.name
+          type:req.body.type
       }}
   ,{
       new:true
